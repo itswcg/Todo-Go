@@ -13,3 +13,6 @@
 
 # Goland
 .idea/
+
+# prod.conf
+prod.conf
