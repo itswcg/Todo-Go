@@ -1,8 +1,9 @@
 package main
 
 import (
-	_ "Todo-Go/routers"
 	"github.com/astaxie/beego"
+	_ "Todo-Go/initial"
+	_ "Todo-Go/routers"
 )
 
 func main() {

@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	. "Todo-Go/models"
 )
 
 type MainController struct {
@@ -9,7 +10,14 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
+	todos, err := GetAllTodo(1)
+	if err == nil {
+		c.Data["todos"] = todos
+	}
+	c.Data["content"] = "hello"
 	c.TplName = "index.tpl"
+}
+
+func (c *MainController) Post() {
+
 }
