@@ -1,6 +1,7 @@
 package models
 
 import (
+	"Todo-Go/utils"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -40,7 +41,23 @@ func CheckUserName(username string) bool {
 	}
 }
 
-func UpdateUser(username string)  {
-
+func CheckPassword(username, password string) bool {
+	var maps []orm.Params
+	o := orm.NewOrm()
+	pass := utils.MakePassword(password)
+	sql := "select * from core_user where username = ? and password = ?"
+	num, err := o.Raw(sql, username, pass).Values(&maps)
+	if err == nil && num == 1 {
+		return true
+	} else {
+		return false
+	}
 }
 
+func ChangePassword(username, password string) error {
+	o := orm.NewOrm()
+	pass := utils.MakePassword(password)
+	sql := "update core_user set password = ? where username = ?"
+	_, err := o.Raw(sql, pass, username).Exec()
+	return err
+}
