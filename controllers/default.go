@@ -5,19 +5,14 @@ import (
 	. "Todo-Go/models"
 )
 
-type MainController struct {
-	beego.Controller
+type TodoController struct {
+	BaseController
 }
 
-func (c *MainController) Get() {
-	todos, err := GetAllTodo(1)
-	if err == nil {
-		c.Data["todos"] = todos
-	}
-	c.Data["content"] = "hello"
-	c.TplName = "index.tpl"
+func (this *TodoController) Get() {
+	this.TplName = "index.tpl"
 }
 
-func (c *MainController) Post() {
+func (this *TodoController) Post() {
 
 }

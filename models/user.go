@@ -20,7 +20,8 @@ func AddUser(username, password string) (int64, error) {
 	// passsword
 	sql := "insert into auth_user(username, password, email, date_joined, is_superuser, first_name, last_name, is_staff, is_active) values(?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	cur_time := time.Now()
-	res, err := o.Raw(sql, username, password, EMAIL, cur_time, IS_SUPERUSER, FIRST_NAME, LAST_NAME, IS_STAFF, IS_ACTIVE).Exec()
+	pass := utils.MakePassword(password)
+	res, err := o.Raw(sql, username, pass, EMAIL, cur_time, IS_SUPERUSER, FIRST_NAME, LAST_NAME, IS_STAFF, IS_ACTIVE).Exec()
 	if err != nil {
 		return 0, err
 	} else {
