@@ -30,6 +30,18 @@ func AddUser(username, password string) (int64, error) {
 
 }
 
+func GetUser(user_id int64) (interface{}, error) {
+	var maps []orm.Params
+	o := orm.NewOrm()
+	sql := "select * from auth_user where id = ?"
+	num, err := o.Raw(sql, user_id).Values(&maps)
+	if err == nil && num == 1 {
+		return maps[0]["username"], nil
+	} else {
+		return "", err
+	}
+}
+
 func CheckUserName(username string) bool {
 	var maps []orm.Params
 	o := orm.NewOrm()
@@ -58,7 +70,7 @@ func CheckPassword(username, password string) (interface{}, bool) {
 func ChangePassword(username, password string) error {
 	o := orm.NewOrm()
 	pass := utils.MakePassword(password)
-	sql := "update core_user set password = ? where username = ?"
+	sql := "update auth_user set password = ? where username = ?"
 	_, err := o.Raw(sql, pass, username).Exec()
 	return err
 }
@@ -85,5 +97,17 @@ func AddSession(sessionid string, user_id int64) (int64, error) {
 		return 0, err
 	} else {
 		return res.LastInsertId()
+	}
+}
+
+func UpdateSession(sessionid string) error {
+	o := orm.NewOrm()
+	expire_date := time.Now().AddDate(0, 1, 0)
+	sql := "update django_session set expire_date = ? where session_key = ?"
+	_, err := o.Raw(sql, expire_date, sessionid).Exec()
+	if err != nil {
+		return err
+	} else {
+		return nil
 	}
 }

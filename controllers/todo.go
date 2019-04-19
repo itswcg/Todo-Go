@@ -5,9 +5,17 @@ type TodoController struct {
 }
 
 func (this *TodoController) Get() {
-	this.TplName = "index.tpl"
+	this.TplName = "todo.tpl"
 }
 
 func (this *TodoController) Post() {
+
+}
+
+type SearchController struct {
+	BaseController
+}
+
+func (this *SearchController) Post() {
 
 }

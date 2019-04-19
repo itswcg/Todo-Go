@@ -39,7 +39,7 @@ func (this *RegisterController) Post() {
 		return
 	}
 
-	this.Ctx.SetCookie("sessionid", sessionid)
+	this.Ctx.SetCookie("sessionid", sessionid, 2592000)
 
 	this.Redirect("/", 302)
 }
@@ -67,7 +67,35 @@ func (this *LoginController) Post() {
 
 	sessionid := utils.GenerateSession(user_id)
 
-	_, _ = AddSession(sessionid, user_id)
+	_ = UpdateSession(sessionid)
+
+	this.Ctx.SetCookie("sessionid", sessionid, 2592000)
+
+	this.Redirect("/", 302)
+}
+
+type SettingController struct {
+	BaseController
+}
+
+func (this *SettingController) Get() {
+	this.TplName = "setting.tpl"
+}
+
+func (this *SettingController) Post() {
+	username := this.UserName
+	old_password := this.GetString("old_password")
+	new_password := this.GetString(("new_password"))
+	confirm_password := this.GetString("confirm_password")
+
+	_, check := CheckPassword(username, old_password)
+
+	if new_password != confirm_password || check == false {
+		this.Redirect("setting", 302)
+		return
+	}
+
+	_ = ChangePassword(username, new_password)
 
 	this.Redirect("/", 302)
 }
