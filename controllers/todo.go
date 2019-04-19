@@ -1,5 +1,9 @@
 package controllers
 
+import (
+	. "Todo-Go/models"
+)
+
 type TodoController struct {
 	BaseController
 }
@@ -17,5 +21,9 @@ type SearchController struct {
 }
 
 func (this *SearchController) Post() {
+	content := this.GetString("value")
 
+	todos, _ := SearchTodo(content)
+
+	this.Data["todos"] = todos
 }
