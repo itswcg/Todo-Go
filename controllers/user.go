@@ -2,10 +2,11 @@ package controllers
 
 import (
 	. "Todo-Go/models"
+	"github.com/astaxie/beego"
 )
 
 type RegisterController struct {
-	BaseController
+	beego.Controller
 }
 
 func (this *RegisterController) Get() {
@@ -15,23 +16,26 @@ func (this *RegisterController) Get() {
 func (this *RegisterController) Post() {
 	username := this.GetString("username")
 	password := this.GetString("password")
+	confirm_password := this.GetString("confirm_password")
 
-	if !CheckUserName(username) {
-		this.Redirect("/login", 302)
+	if password != confirm_password || !CheckUserName(username) {
+		this.Redirect("/register", 302)
+		return
 	}
 
 	_, err := AddUser(username, password)
 	if err != nil {
-		this.Redirect("/login", 302)
+		this.Redirect("/register", 302)
+		return
 	}
 
-	//设置session login
+	this.Ctx.SetCookie("sessionid", "")
 
 	this.Redirect("/", 302)
 }
 
 type LoginController struct {
-	BaseController
+	beego.Controller
 }
 
 func (this *LoginController) Get() {

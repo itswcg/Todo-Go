@@ -12,7 +12,7 @@
 <link href = "/static/css/todo.css" rel = "stylesheet">
 <link href = "/static/css/bootstrap.css" rel = "stylesheet">
 <script src= "https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src= "/static/js/bootstrap.min.js"></script>
+<script src= "/static/js/bootstrap.js"></script>
 
 </head>
 <body>
@@ -77,7 +77,7 @@ required placeholder = "新的任务"></textarea>
 
 <li class = "dropdown">
 <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown"><img
-src ="{{ user.profile.get_avatar }}" height = "22" width = "22"><span
+src ="/static/img/user.png" height = "22" width = "22"><span
 class = "caret"></span></a>
 <ul class = "dropdown-menu dropdown-menu-right" aria-labelledby = "dLabel">
 <li><a href = "/">我的任务</a></li>
@@ -87,7 +87,7 @@ class = "caret"></span></a>
 </ul>
 </li>
 {{ else }}
-<li><a href = "/signup">注册</a></li>
+<li><a href = "/register">注册</a></li>
 <li><a href = "/login">登录</a></li>
 {{ end }}
 </ul>

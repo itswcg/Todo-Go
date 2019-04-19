@@ -1,10 +1,5 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-	. "Todo-Go/models"
-)
-
 type TodoController struct {
 	BaseController
 }

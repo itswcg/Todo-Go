@@ -11,9 +11,9 @@ type BaseController struct {
 }
 
 func (this *BaseController) Prepare() {
-	sessionid := this.GetSession("sessionid")
-	if sessionid == nil {
-		//this.Redirect("/login", 302)
+	sessionid := this.Ctx.GetCookie("sessionid")
+	if sessionid == "" {
+		this.Redirect("/login", 302)
 	} else {
 		// 验证session 返回user_id
 	}

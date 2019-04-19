@@ -46,7 +46,7 @@ func CheckPassword(username, password string) bool {
 	var maps []orm.Params
 	o := orm.NewOrm()
 	pass := utils.MakePassword(password)
-	sql := "select * from core_user where username = ? and password = ?"
+	sql := "select * from auth_user where username = ? and password = ?"
 	num, err := o.Raw(sql, username, pass).Values(&maps)
 	if err == nil && num == 1 {
 		return true
