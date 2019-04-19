@@ -6,7 +6,7 @@
 <div class= "container">
 <ul class = "list-group">
 {{range .todos}}
-<li todo-id = "{{ .id }}" class ="list-group-item" style = "color: #8590a6">{{ .create_time }}
+<li todo-id = "{{ .id }}" class ="list-group-item" style = "color: #8590a6">{{substr .create_date 0 10 }}
 &nbsp; |&nbsp; {{ .content }}
 <span class = "glyphicon glyphicon-remove remove-todo"></span>
 &nbsp; <span class = "glyphicon glyphicon-edit edit-todo" data-toggle = "modal" data-target = "#{{ .id }}"></span>

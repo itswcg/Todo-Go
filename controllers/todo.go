@@ -26,4 +26,6 @@ func (this *SearchController) Post() {
 	todos, _ := SearchTodo(content)
 
 	this.Data["todos"] = todos
+	this.Data["js"] = true
+	this.TplName = "search.tpl"
 }

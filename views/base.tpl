@@ -10,6 +10,9 @@
     <link href = "/static/css/bootstrap.css" rel = "stylesheet">
     <script src= "https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src= "/static/js/bootstrap.js"></script>
+    {{ if .js }}
+    <script src= "/static/js/todo.js"></script>
+    {{ end }}
     </head>
     <body>
         <header>

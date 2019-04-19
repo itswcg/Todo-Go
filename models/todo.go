@@ -58,9 +58,9 @@ func DeleteTodo(todo_id int64) error {
 
 func SearchTodo(content string) ([]orm.Params, error) {
 	var maps []orm.Params
-	sql := "select * from core_todo where content like %?%"
+	sql := "select * from core_todo where content like ?"
 	o := orm.NewOrm()
-	num, err := o.Raw(sql, content).Values(&maps)
+	num, err := o.Raw(sql, "%"+content+"%").Values(&maps)
 	if err == nil && num > 0 {
 		return maps, nil
 	} else {
