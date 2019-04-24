@@ -25,10 +25,7 @@ $(function () {
         var li = $(this).closest('li');
         var todo = $(li).attr('todo-id');
         $.ajax({
-            url: '/del/',
-            data: {
-                'todo-id': todo
-            },
+            url: '/del/' + todo,
             type: 'get',
             cache: false,
             success: function (data) {

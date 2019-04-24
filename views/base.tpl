@@ -10,7 +10,7 @@
     <link href = "/static/css/bootstrap.css" rel = "stylesheet">
     <script src= "https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src= "/static/js/bootstrap.js"></script>
-    {{ if .js }}
+    {{ if .todoJs }}
     <script src= "/static/js/todo.js"></script>
     {{ end }}
     </head>
@@ -54,7 +54,7 @@
             <div class = "modal-body">
             <form role = "form" method = "post" action = "/add">
             <div class = "form-group">
-            <textarea class= "form-control" id = "todo" name = "todo"
+            <textarea class= "form-control" id = "todo" name = "content"
             required placeholder = "新的任务"></textarea>
             <div class = "modal-footer">
             <button type = "submit" class= "btn btn-primary">提交

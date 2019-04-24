@@ -20,9 +20,9 @@ aria-hidden = "true">&times;</span></button>
 <h4 class = "modal-title" id = "myModalLabel">编辑</h4>
 </div>
 <div class ="modal-body">
-<form role = "form" method = "post" action = "">
+<form role = "form" method = "post" action = "/update/{{ .id }}">
 <div class = "form-group">
-<textarea class= "form-control" id = "todo" name = "todo" required>{{ .content }}</textarea>
+<textarea class= "form-control" id = "todo" name = "content" required>{{ .content }}</textarea>
 <div class = "modal-footer">
 <button type = "submit" class = "btn btn-primary">修改</button>
 </div>

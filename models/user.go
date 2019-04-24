@@ -17,7 +17,6 @@ const (
 
 func AddUser(username, password string) (int64, error) {
 	o := orm.NewOrm()
-	// passsword
 	sql := "insert into auth_user(username, password, email, date_joined, is_superuser, first_name, last_name, is_staff, is_active) values(?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	cur_time := time.Now()
 	pass := utils.MakePassword(password)

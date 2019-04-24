@@ -5,6 +5,22 @@ import (
 	"time"
 )
 
+const (
+	IS_DO = 0
+)
+
+func AddTodo(user_id int64, content string) (int64, error) {
+	o := orm.NewOrm()
+	sql := "insert into core_todo(content, create_date, is_do, author_id) values(?, ?, ?, ?)"
+	cur_time := time.Now()
+	res, err := o.Raw(sql, content, cur_time, IS_DO, user_id).Exec()
+	if res != nil {
+		return 0, err
+	} else {
+		return res.LastInsertId()
+	}
+}
+
 func GetAllTodo(user_id int64) ([]orm.Params, error) {
 	var maps []orm.Params
 	sql := "select * from core_todo where author_id = ?"
@@ -42,7 +58,7 @@ func UpdateTodo(todo_id int64, content string) error {
 	return err
 }
 
-func DoTodo(todo_id int64, do bool) error {
+func DoTodo(todo_id int64, do int) error {
 	sql := "update core_todo set is_do = ? where id = ?"
 	o := orm.NewOrm()
 	_, err := o.Raw(sql, do, todo_id).Exec()
