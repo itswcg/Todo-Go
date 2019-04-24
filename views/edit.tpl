@@ -27,8 +27,8 @@ glyphicon glyphicon-"></span></a></div>
 {{range .todoList}}
 <li todo-id = "{{ .id }}" class = "list-group-item" style = "color: #8590a6">{{substr .create_date 0 10 }}
 &nbsp; |&nbsp; {{ .content }}
-<span class= "glyphicon glyphicon-remove remove-todo"></span>
-&nbsp; <span class = "glyphicon glyphicon-edit edit-todo" data-toggle = "modal" data-target = "#{{ .id }}"></span>
+<span class= "glyphicon glyphicon-remove remove-todo" style="display:none"></span>
+&nbsp; <span class = "glyphicon glyphicon-edit edit-todo" style="display:none" data-toggle = "modal" data-target = "#{{ .id }}"></span>
 <div class = "modal fade" id = "{{ .id }}" tabindex ="-1" role = "dialog" aria-labelledby = "myModalLabel"
 aria-hidden = "true">
 <div class ="modal-dialog ">

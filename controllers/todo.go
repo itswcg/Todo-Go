@@ -87,7 +87,7 @@ func (this *TodoController) EditTask() {
 		this.Redirect("/edit", 302)
 	}
 
-	this.Redirect("/edit", 302)
+	this.Redirect("/", 302)
 }
 
 func (this *TodoController) GetEdit() {
