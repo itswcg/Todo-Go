@@ -99,3 +99,12 @@ func (this *SettingController) Post() {
 
 	this.Redirect("/", 302)
 }
+
+type LogoutController struct {
+	BaseController
+}
+
+func (this *LogoutController) Get() {
+	this.Ctx.SetCookie("sessionid", "")
+	this.Redirect("/", 302)
+}
