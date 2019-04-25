@@ -43,7 +43,7 @@ func GetTodo(user_id int64, is_do, gte bool) ([]orm.Params, error) {
 	}
 	today := time.Now().Format("2006-01-02")
 	o := orm.NewOrm()
-	num, err := o.Raw(sql, user_id, is_do, today).Values(&maps)
+	num, err := o.Raw(sql, user_id, is_do, today+" 00:00:00").Values(&maps)
 	if err == nil && num > 0 {
 		return maps, nil
 	} else {

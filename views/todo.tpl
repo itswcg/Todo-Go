@@ -74,12 +74,12 @@ aria-expanded ="false"><span class = "glyphicon glyphicon-option-vertical"></spa
 <div style = "color: #ccc;"><h2>往日</h2></div>
 <div class = "list-group" style = "margin-top: 10px">
 {{range .todoList}}
-{{if not.is_do}}
+{{if .is_do}}
 <a class = "list-group-item list-group-item-danger" href = "/do/{{ .id }}">
 {{ .content }}
 <div style = "text-align: right; float: right">{{substr .create_date 0 10 }}</div>
 </a>
-{% else %}
+{{else}}
 <a class = "list-group-item disabled" href = "/undo/{{ .id }}">
 {{ .content }}
 <div style = "text-align: right; float: right">{{substr .create_date 0 10 }}</div>
@@ -88,12 +88,12 @@ aria-expanded ="false"><span class = "glyphicon glyphicon-option-vertical"></spa
 {{else}}
 {{end}}
 {{range .doList}}
-{{if not.is_do}}
+{{if not .is_do}}
 <a class = "list-group-item list-group-item-danger" href = "/do/{{ .id }}">
 {{ .content }}
 <div style = "text-align: right; float: right">{{substr .create_date 0 10 }}</div>
 </a>
-{% else %}
+{{else}}
 <a class = "list-group-item disabled" href = "/undo/{{ .id }}">
 {{ .content }}
 <div style = "text-align: right; float: right">{{substr .create_date 0 10 }}</div>
