@@ -1,8 +1,8 @@
-FROM alpine
+FROM scratch
 MAINTAINER itswcg
 
-COPY . /todo
-WORKDIR /todo
+COPY . /Todo-Go
+WORKDIR /Todo
 
-EXPOSE 8000
+EXPOSE 8512
 ENTRYPOINT ["./Todo-Go"]
