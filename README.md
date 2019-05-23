@@ -3,8 +3,19 @@
 
 # 构建
 ```bash
-$ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build # CGO_ENABLED=0来表明禁用CGO工具
+# 交叉编译,用于docker Scratch镜像
+
+$ CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o Todo-Go .
 ```
+
+# Usage
+```bash
+$ git clone git@github.com:itswcg/Todo-Go.git
+$ cd Todo-Go
+$ docker build -t todo-go .
+$ docker run -p 8512:8512 -d todo-go
+```
+
 
 # 欢迎使用
 <https://gotodo.itswcg.com>
